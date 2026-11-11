@@ -1,0 +1,539 @@
+/* Release polish: readable supporting text, accessible controls and new flows. */
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -80px;
+  z-index: 100;
+  background: #24372f;
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.skip-link:focus {
+  top: 12px;
+}
+.challenge-banner {
+  margin: 24px 0 0;
+  padding: 23px;
+  border: 1px solid #dbe4c5;
+  border-radius: 14px;
+  background: #edf2e0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.challenge-banner > div {
+  flex: 1;
+}
+.challenge-banner h2 {
+  font-size: 21px;
+  letter-spacing: -0.5px;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+.challenge-banner p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #627354;
+  max-width: 680px;
+  margin: 0;
+}
+.challenge-banner .primary {
+  flex-shrink: 0;
+}
+.daily-countdown {
+  font-size: 10px;
+  color: #657747;
+  display: block;
+  margin-top: 8px;
+}
+.result-secondary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+.result-secondary-actions .secondary {
+  font-size: 11px;
+  padding: 12px 15px;
+}
+.comparison {
+  background: #e9f0dc;
+  color: #526d3a;
+  border-radius: 10px;
+  font-size: 13px;
+  padding: 16px;
+  line-height: 1.8;
+}
+.share-text {
+  width: 100%;
+  min-height: 160px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.8;
+  border: 1px solid #ccd7c2;
+  background: white;
+  border-radius: 8px;
+  padding: 14px;
+  resize: vertical;
+  color: #263a2d;
+  overflow-wrap: anywhere;
+}
+.detail-flag {
+  display: block;
+  width: 150px;
+  height: 100px;
+  object-fit: contain;
+  margin: 15px auto 25px;
+}
+.empty-state {
+  padding: 36px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  background: #eef2e6;
+  border: 1px dashed #d5dfc7;
+  border-radius: 12px;
+  margin: 18px 0;
+}
+.empty-state h3,
+.empty-state p {
+  margin: 0;
+}
+.empty-state p {
+  font-size: 13px;
+  color: #6b7a5e;
+}
+.empty-state > svg {
+  color: #859a6c;
+}
+.history-section {
+  margin-top: 30px;
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 22px;
+  border-radius: 12px;
+}
+.history-section h2 {
+  font-size: 19px;
+  margin: 0 0 12px;
+  letter-spacing: -0.5px;
+}
+.history-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border-top: 1px solid #edf0e8;
+  padding: 14px 0;
+}
+.history-row > svg {
+  color: #94a47f;
+}
+.history-row > div {
+  flex: 1;
+}
+.history-row strong {
+  font-size: 12px;
+  font-weight: 550;
+  display: block;
+}
+.history-row small {
+  font-size: 10px;
+  color: #708161;
+  display: block;
+  margin-top: 5px;
+}
+.history-row > b {
+  font-size: 14px;
+  color: #3458dc;
+}
+.collection-card {
+  width: 100%;
+  min-width: 0;
+}
+.collection-card:hover {
+  box-shadow: 0 4px 14px #24372f0d;
+  border-color: #a6b68f;
+}
+.collection-card:focus-visible {
+  outline-offset: 1px;
+}
+.hero-copy > p {
+  color: #626e60;
+}
+.hero-notes {
+  color: #66765c;
+  font-size: 10px;
+}
+.tiny-label {
+  color: #65735c;
+  font-size: 9px;
+}
+.muted {
+  color: #65715f;
+  font-size: 12px;
+}
+.setup-fields label,
+.setup-fields legend {
+  font-size: 11px;
+}
+.setup-fields select {
+  font-size: 11px;
+}
+.setup-bottom > span {
+  color: #65745d;
+  font-size: 10px;
+}
+.region-kicker {
+  color: #64725b;
+  font-size: 8px;
+}
+.region-count {
+  color: #5e6f53;
+  font-size: 8px;
+}
+.region-card p {
+  color: #6d775f;
+  font-size: 9px;
+}
+.region-card h3 {
+  font-size: 15px;
+}
+.region-card:focus-visible {
+  outline-offset: 2px;
+}
+.sea-card p,
+.review-card p {
+  color: #65745b;
+  font-size: 10px;
+}
+.sea-card .tiny-label {
+  font-size: 8px;
+  color: #647654;
+}
+.progress-strip p,
+.progress-strip p b {
+  color: #657958;
+  font-size: 10px;
+}
+.collection-card small {
+  color: #637752;
+  font-size: 9px;
+}
+.collection-card strong {
+  font-size: 11px;
+}
+.storage-note {
+  color: #66765c;
+  font-size: 11px;
+}
+.footer-inner {
+  color: #63735a;
+  font-size: 10px;
+}
+.footer-inner button {
+  color: #5e7252;
+  font-size: 10px;
+  min-height: 36px;
+}
+.nav button {
+  min-height: 44px;
+}
+.icon-button {
+  min-width: 44px;
+  min-height: 44px;
+}
+.text-button {
+  min-height: 36px;
+}
+.answer-letter {
+  font-size: 11px;
+  color: #607552;
+}
+.game-title p,
+.game-hint {
+  color: #647759;
+  font-size: 12px;
+}
+.feedback p {
+  color: #657753;
+  font-size: 11px;
+}
+.game-meta {
+  color: #647559;
+}
+.result-stats span {
+  color: #647559;
+  font-size: 11px;
+}
+.result-review small {
+  color: #69785f;
+  font-size: 10px;
+}
+.passport-stats span {
+  color: #68775c;
+  font-size: 11px;
+}
+.passport-heading p {
+  color: #66775b;
+}
+.search-box input {
+  font-size: 13px;
+}
+.game-progress {
+  scroll-margin-top: 20px;
+}
+.primary,
+.secondary {
+  min-height: 44px;
+}
+.daily-top > span {
+  font-size: 9px;
+  color: #5d733d;
+}
+.daily-card > p {
+  color: #617445;
+}
+.toast {
+  line-height: 1.7;
+}
+.dialog-close {
+  min-height: 44px;
+  min-width: 44px;
+}
+@media (max-width: 1050px) {
+  .setup-bottom > span {
+    font-size: 9px;
+  }
+  .setup-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .setup-fields fieldset {
+    grid-column: 1/-1;
+  }
+  .segmented {
+    max-width: 190px;
+  }
+  .region-card p {
+    font-size: 10px;
+  }
+}
+@media (max-width: 760px) {
+  .challenge-banner {
+    padding: 18px;
+    flex-wrap: wrap;
+    gap: 13px;
+  }
+  .challenge-banner > div {
+    flex-basis: 100%;
+  }
+  .challenge-banner h2 {
+    font-size: 19px;
+  }
+  .challenge-banner p {
+    font-size: 11px;
+  }
+  .challenge-banner > .icon-button {
+    margin-left: auto;
+  }
+  .result-secondary-actions {
+    gap: 8px;
+  }
+  .result-secondary-actions > .secondary {
+    font-size: 10px;
+    padding: 12px;
+  }
+  .result-secondary-actions > .text-button {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+  .collection-card strong {
+    font-size: 10px;
+  }
+  .collection-card small {
+    font-size: 8px;
+  }
+  .hero-notes {
+    font-size: 9px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .hero-copy > p {
+    font-size: 12px;
+  }
+  .region-card h3 {
+    font-size: 16px;
+  }
+  .region-card p {
+    font-size: 10px;
+  }
+  .region-kicker {
+    font-size: 8px;
+  }
+  .region-count {
+    font-size: 8px;
+  }
+  .sea-card p,
+  .review-card p {
+    font-size: 10px;
+  }
+  .sea-card h3,
+  .review-card h3 {
+    font-size: 13px;
+  }
+  .progress-strip p {
+    font-size: 10px;
+  }
+  .setup-fields select {
+    font-size: 12px;
+  }
+  .setup-fields label,
+  .setup-fields legend {
+    font-size: 12px;
+  }
+  .segmented {
+    max-width: none;
+  }
+  .segmented button {
+    min-height: 36px;
+    font-size: 12px;
+  }
+  .game-title h1 {
+    font-size: 22px;
+  }
+  .game-title p,
+  .game-hint {
+    font-size: 11px;
+  }
+  .game-hint {
+    line-height: 1.8;
+  }
+  .game-toolbar > span {
+    max-width: 48%;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .answer {
+    font-size: 12px;
+    min-height: 70px;
+  }
+  .answer-letter {
+    font-size: 11px;
+  }
+  .game-meta {
+    font-size: 12px;
+  }
+  .result-stats span {
+    font-size: 9px;
+  }
+  .footer-inner {
+    font-size: 9px;
+    line-height: 1.7;
+  }
+  .footer-inner button {
+    font-size: 10px;
+  }
+  .footer-local {
+    font-size: 9px;
+  }
+  .footer-inner > span:nth-child(2) {
+    flex-basis: 60%;
+  }
+  .history-section {
+    padding: 18px;
+  }
+  .history-section h2 {
+    font-size: 17px;
+  }
+  .nav.open {
+    gap: 12px;
+    justify-content: space-between;
+  }
+  .nav.open button {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  .header-actions {
+    gap: 4px;
+  }
+  .avatar {
+    min-width: 39px;
+  }
+  .passport-stats span {
+    font-size: 10px;
+  }
+}
+@media (max-width: 380px) {
+  .main,
+  .header-inner,
+  .footer-inner {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .hero h1 {
+    font-size: 39px;
+  }
+  .hero h1 svg {
+    width: 230px;
+  }
+  .hero-art {
+    max-width: 320px;
+  }
+  .region-card {
+    padding: 14px 11px;
+  }
+  .region-top {
+    gap: 5px;
+  }
+  .region-count {
+    font-size: 7px;
+  }
+  .answer {
+    font-size: 11px;
+    padding: 11px 8px;
+    gap: 7px;
+  }
+  .setup-bottom {
+    flex-wrap: wrap;
+  }
+  .setup-bottom > span {
+    max-width: none;
+  }
+  .setup-bottom .primary {
+    width: 100%;
+  }
+  .result-actions {
+    flex-direction: column;
+  }
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero-buttons {
+    gap: 12px;
+  }
+  .primary {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+  .hero-notes {
+    font-size: 8px;
+  }
+}
+.question-flag {
+  position: relative;
+}
+.flag-loading {
+  position: absolute;
+  bottom: 14px;
+  font-size: 11px;
+  color: #697d5a;
+}
+.answer:disabled:not(.correct):not(.wrong):not(.faded) {
+  opacity: 0.65;
+}
