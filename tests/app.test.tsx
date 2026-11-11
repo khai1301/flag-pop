@@ -13,6 +13,7 @@ for (const key of [
   "HTMLButtonElement",
   "HTMLInputElement",
   "localStorage",
+  "sessionStorage",
   "location",
   "history",
   "Event",
@@ -39,6 +40,7 @@ const { encodeChallenge } = await import("../src/storage.ts");
 afterEach(() => {
   cleanup();
   localStorage.clear();
+  sessionStorage.clear();
   history.replaceState(null, "", "/");
 });
 function start() {
@@ -73,7 +75,7 @@ test("complete 10-question game, prevent second answer and persist exactly one r
   assert.equal(p.played, 1);
   assert.equal(p.answered, 10);
   assert.equal(p.history.length, 1);
-  assert.equal(localStorage.getItem("flagpop-session-v1"), null);
+  assert.equal(sessionStorage.getItem("flagpop-session-v1"), null);
   assert.ok(screen.getByRole("button", { name: "Sao chép link thách bạn" }));
 });
 test("refresh restores pending answer and next button without replaying it", () => {
@@ -82,7 +84,7 @@ test("refresh restores pending answer and next button without replaying it", () 
   answerFirst();
   next();
   answerFirst();
-  const saved = localStorage.getItem("flagpop-session-v1");
+  const saved = sessionStorage.getItem("flagpop-session-v1");
   assert.ok(saved);
   r.unmount();
   r = render(<App />);
@@ -91,7 +93,7 @@ test("refresh restores pending answer and next button without replaying it", () 
     document.querySelector(".game-meta")?.textContent?.includes("2 / 10"),
     true,
   );
-  assert.equal(localStorage.getItem("flagpop-session-v1"), saved);
+  assert.equal(sessionStorage.getItem("flagpop-session-v1"), saved);
   next();
   assert.equal(
     document.querySelector(".game-meta")?.textContent?.includes("3 / 10"),
@@ -115,7 +117,7 @@ test("incoming challenge starts exact regional set and malformed links offer rec
   let r = render(<App />);
   assert.ok(screen.getByText("Bạn của bạn đạt 8/10. Đến lượt bạn!"));
   fireEvent.click(screen.getByRole("button", { name: "Nhận thử thách" }));
-  const s = JSON.parse(localStorage.getItem("flagpop-session-v1")!);
+  const s = JSON.parse(sessionStorage.getItem("flagpop-session-v1")!);
   assert.equal(s.mode, "challenge");
   assert.equal(s.spec.seed, "test-seed");
   assert.equal(s.questions.length, 10);
@@ -155,11 +157,11 @@ test("exit cancel keeps question; confirmed exit removes unfinished session", ()
   const buttons = screen.getAllByRole("button", { name: "Thoát lượt" });
   fireEvent.click(buttons[buttons.length - 1]);
   assert.ok(screen.getByRole("button", { name: "Bắt đầu chơi" }));
-  assert.equal(localStorage.getItem("flagpop-session-v1"), null);
+  assert.equal(sessionStorage.getItem("flagpop-session-v1"), null);
 });
 test("keyboard shortcuts select answers and corrupt saved data does not crash", () => {
   localStorage.setItem("flagpop-v1", "{bad json");
-  localStorage.setItem("flagpop-session-v1", "{bad json");
+  sessionStorage.setItem("flagpop-session-v1", "{bad json");
   render(<App />);
   start();
   fireEvent.load(screen.getByAltText("Quốc kỳ cần đoán"));
@@ -188,13 +190,13 @@ test("small region pool finishes without duplicates and sharing fallback is usab
 test("a saved session already accounted for is not restored", () => {
   render(<App />);
   start();
-  const saved = localStorage.getItem("flagpop-session-v1")!;
+  const saved = sessionStorage.getItem("flagpop-session-v1")!;
   for (let i = 0; i < 10; i++) {
     answerFirst();
     next();
   }
   cleanup();
-  localStorage.setItem("flagpop-session-v1", saved);
+  sessionStorage.setItem("flagpop-session-v1", saved);
   render(<App />);
   assert.ok(screen.getByRole("button", { name: "Bắt đầu chơi" }));
   assert.equal(JSON.parse(localStorage.getItem("flagpop-v1")!).played, 1);

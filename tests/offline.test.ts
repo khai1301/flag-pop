@@ -28,13 +28,21 @@ test(
           addAll: async (items: string[]) => {
             assets = items;
           },
+          match: async (request: string) =>
+            request === "/" || request === "/index.html"
+              ? {
+                  redirected: false,
+                  blob: async () => new Blob(["cached shell"]),
+                  status: 200,
+                  statusText: "OK",
+                  headers: new Headers(),
+                }
+              : undefined,
         }),
         keys: async () => ["another-app-cache", "flagpop-old"],
         delete: async (name: string) => {
           deleted.push(name);
         },
-        match: async (request: string) =>
-          request === "/index.html" ? "cached shell" : undefined,
       },
       fetch: async () => {
         throw new Error("offline");
@@ -72,6 +80,6 @@ test(
         response = r;
       },
     });
-    assert.equal(await response!, "cached shell");
+    assert.equal((await response! as any).status, 200);
   },
 );

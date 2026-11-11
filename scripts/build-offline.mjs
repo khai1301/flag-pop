@@ -22,7 +22,7 @@ await writeFile(
   `const CACHE=${JSON.stringify(version)};const ASSETS=${JSON.stringify(["/", ...assets])};
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('flagpop-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));});
-self.addEventListener('fetch',event=>{const url=new URL(event.request.url);if(event.request.method!=='GET'||url.origin!==self.location.origin)return;if(event.request.mode==='navigate'){event.respondWith(caches.open(CACHE).then(cache=>cache.match('/index.html')).then(cached=>cached||fetch(event.request)));return;}event.respondWith(caches.open(CACHE).then(cache=>cache.match(event.request)).then(cached=>cached||fetch(event.request)));});
+self.addEventListener('fetch',event=>{const url=new URL(event.request.url);if(event.request.method!=='GET'||url.origin!==self.location.origin)return;if(event.request.mode==='navigate'){event.respondWith(caches.open(CACHE).then(async cache=>{const cached=await cache.match('/')||await cache.match('/index.html');if(cached&&!cached.redirected)return cached;if(cached){return new Response(await cached.blob(),{status:cached.status,statusText:cached.statusText,headers:cached.headers});}return fetch(event.request);}));return;}event.respondWith(caches.open(CACHE).then(cache=>cache.match(event.request)).then(cached=>cached||fetch(event.request)));});
 `,
 );
 console.log(`Offline cache: ${assets.length} assets, ${version}`);

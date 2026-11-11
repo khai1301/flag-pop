@@ -38,6 +38,11 @@ import {
   readJSON,
   saveJSON,
   removeSaved,
+  readSession,
+  saveSession,
+  clearSession,
+  newId,
+  commitProgress,
   sanitizeProgress,
   sanitizeSession,
   finishSession,
@@ -109,7 +114,7 @@ export default function App() {
   const [progress, setProgress] = useState(readProgress);
   const [restored] = useState(() => {
     const candidate = sanitizeSession(
-      readJSON("flagpop-session-v1"),
+      readSession(),
       countries,
     );
     return candidate &&
@@ -232,7 +237,7 @@ export default function App() {
   useEffect(() => {
     if (view === "game" && questions.length) {
       if (
-        !saveJSON("flagpop-session-v1", snapshot()) &&
+        !saveSession(snapshot()) &&
         !sessionWarning.current
       ) {
         sessionWarning.current = true;
@@ -240,7 +245,7 @@ export default function App() {
           "Không thể lưu trên trình duyệt này. Đừng tải lại trang khi đang chơi.",
         );
       }
-    } else if (view !== "game") removeSaved("flagpop-session-v1");
+    } else if (view !== "game") clearSession();
   }, [
     view,
     questions,
@@ -355,7 +360,7 @@ export default function App() {
     const distractors = candidates.length >= 4 ? candidates : countries;
     const newQuestions = makeQuestions(candidates, amount, seed, distractors);
     setQuestions(newQuestions);
-    setSessionId(crypto.randomUUID());
+    setSessionId(newId());
     setSessionDay(startDay);
     setSpec(
       nextMode === "review"
@@ -413,7 +418,7 @@ export default function App() {
         setToast(
           "Không thể lưu tiến độ. Kết quả vẫn hiển thị trong phiên này.",
         );
-      removeSaved("flagpop-session-v1");
+      clearSession();
       setElapsed(
         Math.max(1, Math.round((Date.now() - started.current) / 1000)),
       );
@@ -467,7 +472,7 @@ export default function App() {
       ),
     );
     setSpec(incoming);
-    setSessionId(crypto.randomUUID());
+    setSessionId(newId());
     setSessionDay(today);
     setSessionTitle(`Thách bạn · ${REGIONS[incoming.region]}`);
     setSessionRegion(incoming.region);
